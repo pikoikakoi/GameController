@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    // [SerializeField] private float value;
-    public static event Action<bool> CollectObstacle;
+    [SerializeField] private int value;
+    public static event Action<int> CollectCoin;
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            CollectObstacle?.Invoke(true);
+            CollectCoin?.Invoke(value);
             Destroy(gameObject);
         }
     }

@@ -1,19 +1,30 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UIHealth : MonoBehaviour
 {
-    public TextMeshProUGUI playerHealth;
     private PlayerHealth health;
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float currentHealth;
+    [SerializeField] private float sliderTimer;
 
     private void Start()
     {
         health = FindFirstObjectByType<PlayerHealth>();
-        playerHealth.text = "HP: " + health.GetHealth().ToString();
+        SetSlider();
     }
 
-    void Update()
+    private void SetSlider()
     {
-        playerHealth.text = "HP: " + health.GetHealth().ToString();
+        hpSlider.maxValue = health.GetMaxHealth();
+        hpSlider.value = health.GetHealth();
     }
+
+    private void StartTimer()
+    {
+        
+    }
+
 }

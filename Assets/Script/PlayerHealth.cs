@@ -8,13 +8,11 @@ public class PlayerHealth : MonoBehaviour
     void OnEnable()
     {
         Bubble.CollectBubble += TakeBubble;
-        Obstacle.CollectObstacle += TakeDamage;
     }
 
     void OnDisable()
     {
         Bubble.CollectBubble -= TakeBubble;
-        Obstacle.CollectObstacle -= TakeDamage;
     }
 
     private void Start()
@@ -27,13 +25,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += value;
     }
 
-    private void TakeDamage(float value)
-    {
-        currentHealth -= value;
-    }
-
     public float GetHealth()
     {
         return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

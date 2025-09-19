@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject GameOverPanel;
+
+    private void OnEnable()
     {
-        
+        Obstacle.CollectObstacle += GameOver;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
+    {
+        Obstacle.CollectObstacle -= GameOver;
+    }
+
+    private void GameOver(bool value)
     {
         
+        GameOverPanel.SetActive(value);
+        Time.timeScale = 0;
     }
 }
