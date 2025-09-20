@@ -2444,8 +2444,9 @@ MonoBehaviour:
   starPrefab: {fileID: 3358694060457844359, guid: 2c1fa4fda23319746aae38fb256852c9, type: 3}
   bubblePrefab: {fileID: 1637883575131364466, guid: e19553f2a2f63d54ea292c551ff5411f, type: 3}
   obstaclePrefabs:
-  - {fileID: 1080059774695335692, guid: 2c87dc7830a3082408eeb53122053f99, type: 3}
   - {fileID: 1080059774695335692, guid: f3703ffc08512b74a8c7129b0118ce2f, type: 3}
+  - {fileID: 1080059774695335692, guid: 41ecafc51636c4645b761634325843f8, type: 3}
+  - {fileID: 1080059774695335692, guid: 4d27bc90511f5604dafb200482d5ed71, type: 3}
   starChance: 0.1
   bubbleChance: 0.4
   obstacleChance: 0.3
