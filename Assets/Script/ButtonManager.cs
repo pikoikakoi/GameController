@@ -4,17 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public static event Action<bool> StartGame;
-
     public void PlayGame()
     {
         Time.timeScale = 1;
-        StartGame?.Invoke(true);
+        GameManager.Instance.ChangeState(GameState.Ingame);
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Retry()
+    {
+        GameManager.Instance.RestartGame();
     }
 
     public void QuitGame()

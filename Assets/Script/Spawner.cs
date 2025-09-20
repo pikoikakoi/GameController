@@ -18,21 +18,21 @@ public class Spawner : MonoBehaviour
     public float spawnInterval = 1f; // jeda antar spawn
 
     private float timer;
-    private bool isStarted;
+    private bool isPlaying;
 
     private void OnEnable()
     {
-        ButtonManager.StartGame += CheckStart;
+        GameManager.OnStateChanged += StateHandler;
     }
 
     private void OnDisable()
     {
-        ButtonManager.StartGame -= CheckStart;
+        GameManager.OnStateChanged -= StateHandler;
     }
 
     void Update()
     {
-        if (!isStarted) return;
+        if (!isPlaying) return;
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
@@ -41,9 +41,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void CheckStart(bool start)
+    private void StateHandler(GameState newState)
     {
-        isStarted = start;    
+        if (newState == GameState.Ingame)
+        {
+            isPlaying = true;
+        }
     }
 
     void SpawnObject()

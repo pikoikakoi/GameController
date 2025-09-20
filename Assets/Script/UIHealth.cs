@@ -4,27 +4,23 @@ using UnityEngine.UI;
 
 public class UIHealth : MonoBehaviour
 {
-    private PlayerHealth health;
+    [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private Slider hpSlider;
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float currentHealth;
-    [SerializeField] private float sliderTimer;
 
     private void Start()
     {
-        health = FindFirstObjectByType<PlayerHealth>();
-        SetSlider();
+        if (hpSlider != null && playerHealth != null)
+        {
+            hpSlider.maxValue = playerHealth.GetMaxHealth();
+            hpSlider.value = playerHealth.GetCurrentHealth();
+        }
     }
 
-    private void SetSlider()
-    {
-        hpSlider.maxValue = health.GetMaxHealth();
-        hpSlider.value = health.GetHealth();
-    }
-
-    private void StartTimer()
-    {
-        
+    private void Update() {
+        if (hpSlider != null && playerHealth)
+        {
+            hpSlider.value = playerHealth.GetCurrentHealth(); 
+        }
     }
 
 }

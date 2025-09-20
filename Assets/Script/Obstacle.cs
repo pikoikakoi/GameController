@@ -10,6 +10,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             CollectObstacle?.Invoke(true);
+            GameManager.Instance.ChangeState(GameState.GameOver);
             Destroy(gameObject);
         }
     }

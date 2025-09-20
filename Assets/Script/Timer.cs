@@ -15,19 +15,22 @@ public class Timer : MonoBehaviour
 
     private void OnEnable()
     {
-        ButtonManager.StartGame += CheckInGame;
+        GameManager.OnStateChanged += StateHandler;
         Obstacle.CollectObstacle += SaveTimer;
     }
 
     private void OnDisable()
     {
-        ButtonManager.StartGame -= CheckInGame;
+        GameManager.OnStateChanged -= StateHandler;
         Obstacle.CollectObstacle -= SaveTimer;
     }
 
-    private void CheckInGame(bool isPlay)
+    private void StateHandler(GameState newState)
     {
-        isPlaying = isPlay;
+        if (newState == GameState.Ingame)
+        {
+            isPlaying = true;
+        }
     }
 
     private void Update()
