@@ -49,9 +49,9 @@ public class ScoreSystem : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (bestPerformanceTxt != null) SetTime(highScore, bestPerformanceTxt, "Best Performance: ");
-        if (starCollected != null) starCollected.text = "Stars Collected: " + UIPoin.Instance.GetPoints().ToString();
-        if (timerText != null) SetTime(Timer.Instance.GetTime(), timerText, "Your Time: ");
+        if (bestPerformanceTxt != null) SetTime(highScore, bestPerformanceTxt); // "Best Performance: "
+        if (starCollected != null) starCollected.text = UIPoin.Instance.GetPoints().ToString(); // "Stars Collected: "
+        if (timerText != null) SetTime(Timer.Instance.GetTime(), timerText);    // "Your Time: "
     }
 
     private void LoadHighscore()
