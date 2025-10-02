@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject InGamePanel;
     [SerializeField] private GameObject GameOverPanel;
 
+    [Header("Audio")]
+    public AudioSource bgm;
+    public AudioSource deadSfx;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
+        bgm.Play();
         if (PlayerPrefs.GetInt("IsRestart", 0) == 1)
         {
             // Jika restart, langsung ke gameplay
@@ -54,6 +59,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(bool value)
     {
+        deadSfx.Play();
+        bgm.Stop();
         GameOverPanel.SetActive(value);
         Time.timeScale = 0;
     }
