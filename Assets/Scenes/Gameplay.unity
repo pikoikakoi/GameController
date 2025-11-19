@@ -3568,6 +3568,7 @@ GameObject:
   - component: {fileID: 1048166941}
   - component: {fileID: 1048166942}
   - component: {fileID: 1048166943}
+  - component: {fileID: 1048166944}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3589,6 +3590,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   followSpeed: 5
+  steerSpeed: 5
+  verticalSpeed: 5
+  maxSpeed: 10
+  deadzone: 0.15
 --- !u!50 &1048166937
 Rigidbody2D:
   serializedVersion: 4
@@ -3779,6 +3784,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1048166944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048166935}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466f2c1f0d0ee1b41bd90eb8557729d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showDebug: 1
+  showConsoleLog: 0
 --- !u!1 &1056467994
 GameObject:
   m_ObjectHideFlags: 0
@@ -4086,7 +4105,7 @@ MonoBehaviour:
   MainMenuPanel: {fileID: 1586828445}
   InGamePanel: {fileID: 958863501}
   GameOverPanel: {fileID: 1429983381}
-  bgm: {fileID: 0}
+  bgm: {fileID: 1012033666}
   deadSfx: {fileID: 1586315523}
 --- !u!4 &1197554783
 Transform:
@@ -5219,6 +5238,50 @@ Transform:
   - {fileID: 2057973441}
   - {fileID: 1795895228}
   - {fileID: 1056467999}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1585703592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1585703594}
+  - component: {fileID: 1585703593}
+  m_Layer: 0
+  m_Name: Wheel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1585703593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585703592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc677b4ec8f1a9346b4a589beafeab00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1585703594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585703592}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6362453, y: 0.7958592, z: 1.2808346}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586315521
@@ -7445,3 +7508,4 @@ SceneRoots:
   - {fileID: 1197554783}
   - {fileID: 1336681529}
   - {fileID: 1478444735}
+  - {fileID: 1585703594}
