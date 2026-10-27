@@ -3594,6 +3594,7 @@ MonoBehaviour:
   verticalSpeed: 5
   maxSpeed: 10
   deadzone: 0.15
+  arduinoSpeed: 2
 --- !u!50 &1048166937
 Rigidbody2D:
   serializedVersion: 4
@@ -3780,7 +3781,7 @@ MonoBehaviour:
     m_ActionId: 8d913a33-b2e7-48c1-8987-ab3e9936f82d
     m_ActionName: Player/Up[/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Keyboard
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3791,13 +3792,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048166935}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 466f2c1f0d0ee1b41bd90eb8557729d1, type: 3}
+  m_Script: {fileID: 11500000, guid: d4f260a15a7439346923951d2469b7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebug: 1
-  showConsoleLog: 0
+  accelData: {x: 0, y: 0, z: 0}
+  isConnected: 0
 --- !u!1 &1056467994
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,7 +5252,7 @@ GameObject:
   - component: {fileID: 1585703594}
   - component: {fileID: 1585703593}
   m_Layer: 0
-  m_Name: Wheel
+  m_Name: Controller Config Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5264,7 +5265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585703592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc677b4ec8f1a9346b4a589beafeab00, type: 3}
   m_Name: 
@@ -5278,7 +5279,7 @@ Transform:
   m_GameObject: {fileID: 1585703592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6362453, y: 0.7958592, z: 1.2808346}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

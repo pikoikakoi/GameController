@@ -8,6 +8,10 @@ public class ButtonManager : MonoBehaviour
     {
         Time.timeScale = 1;
         GameManager.Instance.ChangeState(GameState.Ingame);
+        if (ArduinoManager.instance != null)
+        {
+            ArduinoManager.instance.TryOpenSerial();
+        }
     }
 
     public void MainMenu()

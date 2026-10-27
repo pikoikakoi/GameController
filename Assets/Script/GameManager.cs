@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(bool value)
     {
+        if (ArduinoManager.instance != null)
+        {
+            ArduinoManager.instance.CloseSerial();
+        }
+
         deadSfx.Play();
         bgm.Stop();
         GameOverPanel.SetActive(value);
@@ -73,6 +78,10 @@ public class GameManager : MonoBehaviour
 
     private void ShowHomeUI()
     {
+        if (ArduinoManager.instance != null)
+        {
+            ArduinoManager.instance.TryOpenSerial();
+        }
         MainMenuPanel.SetActive (true);
         InGamePanel.SetActive(false);
     }
@@ -84,6 +93,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGameWithoutHome()
     {
+        if (ArduinoManager.instance != null)
+        {
+            ArduinoManager.instance.TryOpenSerial();
+        }
         // Langsung mulai game tanpa menampilkan UI Home
         HideHomeUI();
         InGamePanel.SetActive(true);

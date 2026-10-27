@@ -15,6 +15,6 @@ public class ObjectMovement : MonoBehaviour
     void FixedUpdate()
     {
         // hanya overwrite kecepatan X, biarkan Y dari Animator
-        rb.velocity = new Vector2(-speed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(-speed, rb.linearVelocity.y);
     }
 }

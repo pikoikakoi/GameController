@@ -116,7 +116,7 @@ public class SteeringWheelDebugger : MonoBehaviour
             info += $"Throttle: {throttleValue:F3}\n\n";
 
             if (rb != null)
-                info += $"Velocity: ({rb.velocity.x:F2}, {rb.velocity.y:F2})";
+                info += $"Velocity: ({rb.linearVelocity.x:F2}, {rb.linearVelocity.y:F2})";
         }
         else
         {

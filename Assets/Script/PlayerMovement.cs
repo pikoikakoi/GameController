@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     private float centerX = -1f; 
     private float centerY = 1f;
 
+    [Header("Arduino")]
+    [SerializeField] private float arduinoSpeed = 2f;
+
     // Direct device reading untuk Genius Trio Racer
     private InputDevice steeringDevice;
     private bool useDirectInput = true; // Gunakan pembacaan langsung dari device
@@ -90,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnControlsChanged(PlayerInput input)
     {
-        Debug.Log("Control scheme switched to: " + playerInput.currentControlScheme);
+        Debug.Log("Control scheme switched to: " + input.currentControlScheme); 
     }
 
     private void FindSteeringWheelDevice()
@@ -126,6 +129,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isMove) return;
 
+        // --- TAMBAHKAN PEMERIKSAAN ARDUINO DI SINI ---
+        if (ArduinoManager.UseArduinoInput)
+        {
+            // Jika Arduino terhubung dan digunakan, abaikan semua skema input lainnya
+            HandleArduinoInput(); 
+            return;
+        }
+
         // Cek apakah menggunakan steering wheel dengan pembacaan langsung
         if (useDirectInput && steeringDevice != null)
         {
@@ -140,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
                 Cursor.visible = true; 
                 
                 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-                rb.velocity = moveInput * speed;
+                rb.linearVelocity = moveInput * speed;
                 break;
 
             case "Mouse":
@@ -157,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
             case "Gamepad":
                 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-                rb.velocity = moveInput * speed;
+                rb.linearVelocity = moveInput * speed;
                 break;
 
             case "SteeringWheel":
@@ -208,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
         if (vel.magnitude > maxSpeed)
             vel = vel.normalized * maxSpeed;
 
-        rb.velocity = vel;
+        rb.linearVelocity = vel;
     }
 
     private void HandleSteeringWheel()
@@ -229,6 +240,24 @@ public class PlayerMovement : MonoBehaviour
         if (targetVelocity.magnitude > maxSpeed)
             targetVelocity = targetVelocity.normalized * maxSpeed;
 
-        rb.velocity = targetVelocity;
+        rb.linearVelocity = targetVelocity;
+    }
+
+    private void HandleArduinoInput()
+    {
+        // Ambil data X dan Y dari sensor ADXL345 yang dikirim oleh ArduinoManager
+        // Asumsi: Kita menggunakan data X dan Y untuk menggerakkan Rigidbody2D.
+        float accelX = ArduinoManager.instance.GetXValue();
+        float accelY = ArduinoManager.instance.GetYValue();
+        
+        // Sesuaikan sensitivitas/kecepatan
+        // Anda mungkin perlu menyesuaikan faktor perkalian ini (misalnya 5f) 
+        // untuk mendapatkan gerakan yang pas di dalam game.
+        float speedFactor = arduinoSpeed; 
+        
+        Vector2 targetVelocity = new Vector2(accelX * speedFactor, accelY * speedFactor);
+        
+        // Terapkan kecepatan
+        rb.linearVelocity = targetVelocity;
     }
 }
