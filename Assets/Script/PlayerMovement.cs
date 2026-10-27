@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isMove = false;
 
     //player input
-    private PlayerInput playerInput;
+    [SerializeField] private PlayerInput playerInput;
 
     //input keyboard
     private Vector2 moveInput;
@@ -29,8 +29,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        playerInput = GetComponent<PlayerInput>();
+        // playerInput = GetComponent<PlayerInput>();
         sprite.enabled = false;
+
+        // playerInput.defaultActionMap = "Keyboard"; // Set default action map ke Keyboard
 
         mainCam = Camera.main;
     }
@@ -38,13 +40,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnStateChanged += StateHandler;
-        playerInput.onControlsChanged += OnControlsChanged;
+        // playerInput.onControlsChanged += OnControlsChanged;
     }
 
     void OnDisable()
     {
         GameManager.OnStateChanged -= StateHandler;
-        playerInput.onControlsChanged -= OnControlsChanged;
+        // playerInput.onControlsChanged -= OnControlsChanged;
     }
 
     private void FixedUpdate()
@@ -86,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
                 Cursor.visible = true; 
                 
                 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-                rb.velocity = moveInput * speed;
+                rb.linearVelocity = moveInput * speed;
                 break;
 
             case "Mouse":
@@ -103,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
             case "Gamepad":
                 moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-                rb.velocity = moveInput * speed;
+                rb.linearVelocity = moveInput * speed;
                 break;
         }
     }
